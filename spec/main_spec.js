@@ -1,31 +1,26 @@
 "use strict";
-var _ = require("lodash");
-var chai = require("chai");
-var sinon = require("sinon");
-var sinonChai = require("sinon-chai");
-var expect = chai.expect;
+let _ = require("lodash");
+let chai = require("chai");
+let sinon = require("sinon");
+let sinonChai = require("sinon-chai");
+let expect = chai.expect;
 chai.use(sinonChai);
 
-var main = require("../lib/main.js");
+let beerSong = require("../lib/beerSong.js");
 
 
-describe("测试描述", function(){
-    sinon.spy(console, 'log');
+describe("beerSong", function(){
 
-    it("测试用例1", function(){
-
-        var result = main();
-        var expect_string = '';
-        
-        expect(expect_string).to.equal(result);
+    it("num == 0", function(){
+        let result = beerSong(0);
+        let expect_string = `No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.`;     
+        expect(result).to.equal(expect_string);
     });
 
-    it("测试用例2", function(){
-
-        main();
-        var result = _.flatten(console.log.args).join("\n");
-        var expect_string = '';
-
-        expect(expect_string).to.equal(result);
+    it("num == 1", function(){
+        let result = beerSong(1);
+        let expect_string = `1 bottle of beer on the wall, 1 bottle of beer.\nTake one down and pass it around, no more bottles of beer on the wall.\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.`
+        expect(result).to.equal(expect_string);
     });
+    
 });
